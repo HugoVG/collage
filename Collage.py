@@ -1,12 +1,30 @@
+#   #   #   #   ######  
+#   #   #   #   #
+#####   #   #   #  ###
+#   #   #   #   #    #
+#   #   #####   ######
+
 import numpy as np
 
 import cv2
-import time, sys, math
+import time, sys
+from math import *
 from tkinter import *
 
 from PIL import ImageTk, Image
 import os
 
+#maakt een input en een output als deze niet bestaan in de DIR
+
+
+if os.path.exists("./input/"):
+    print("input is er")
+else:
+    os.mkdir("./input/")
+if os.path.exists("./output/"):
+    print("output is er")
+else:
+    os.mkdir("./output/")
 
 
 # neem 3 afbeeldingen
@@ -27,8 +45,8 @@ def collage(image1, image2, image3):
     heightsecu3, widthsecu3, channels3 = im3.shape
 
     minheightsecu = min(heightprim, heightsecu2, heightsecu3)
-    fitwidth = math.ceil(widthprim / 2)
-    fitwidth2 = math.floor(widthprim / 2)
+    fitwidth = ceil(widthprim / 2)
+    fitwidth2 = floor(widthprim / 2)
     resize2 = cv2.resize(im2, (fitwidth, minheightsecu))
     resize3 = cv2.resize(im3, (fitwidth2, minheightsecu))
 
@@ -115,3 +133,5 @@ root.mainloop()
 
 if not os.path.exists("./input/"):
     os.mkdir("./input/")
+if not os.path.exists("./output/"):
+    os.mkdir("./output/")
