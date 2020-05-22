@@ -105,8 +105,10 @@ def open_img():
     panel3.image = img3
     panel3.place(x=625,y=75)
     butdel1 = Button( frame, text="haal foto 1 weg", command=delete1).place(x=75, y=350)
-    butdel2 = Button( frame, text="haal foto 2 weg", command=delete2).place(x=400, y=350)
-    butdel3 = Button( frame, text="haal foto 3 weg", command=delete3).place(x=700, y=350)
+    butdel2 = Button( frame, text="haal foto 2 weg", command=delete2).place(x=390, y=350)
+    butmove2 = Button( frame, text="zet als Main", command=move2).place(x=400, y=400)
+    butdel3 = Button( frame, text="haal foto 3 weg", command=delete3).place(x=690, y=350)
+    butmove3 = Button( frame, text="zet als Main", command=move3).place(x=700, y=400)
     collagemaker = Button(frame, text="maak Collage", command= lambda:collage(filearray[0], filearray[1], filearray[2])). place(x=405, y= 550)
 btn = Button(frame, text='open image', command=open_img).place(x=400, y=10)
 def delete1():
@@ -121,6 +123,14 @@ def delete3():
     del imgaraaytk[2]
     del filearray[2]
     open_img()
+def move2():
+    filearray.insert(0, filearray.pop(1))
+    imgaraaytk.insert(0, imgaraaytk.pop(1))
+    open_img()
+def move3():
+    filearray.insert(0, filearray.pop(2))
+    imgaraaytk.insert(0, imgaraaytk.pop(2))
+    open_img()
 reminderlabel = Label(frame,bg="snow", text="Foto 1 is de top foto \n foto 2 en 3 komen er onder te staan\nfoto 2 en 3 worden de wijdte de helft van foto 1 \n Hoogte wordt het kleinste hoogte genomen van de 3 foto's  ").place(x=50, y=610)
 buttonall = Button(frame,bg="red", text="doe alles achter elkaar", command=makeframes).place(x=730, y= 655)
 
@@ -130,8 +140,3 @@ frame.pack()
 root.resizable(False, False)
 root.title("Collage Maker")
 root.mainloop()
-
-if not os.path.exists("./input/"):
-    os.mkdir("./input/")
-if not os.path.exists("./output/"):
-    os.mkdir("./output/")
